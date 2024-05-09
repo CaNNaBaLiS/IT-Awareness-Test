@@ -35,6 +35,18 @@
     </style>
 </head>
 <body>
+    <?php
+    $file = "counter.txt";
+
+    if (file_exists($file) && is_readable($file)) {
+        $count = file_get_contents($file);
+        $count = $count + 1;
+    } else {
+        $count = 1;
+    }
+
+    file_put_contents($file, $count);
+    ?>
     <div class="container">
         <h1>Dies war ein Sicherheitstest</h1>
         <p>Danke, dass Sie an unserem Test zum Bewusstsein für Phishing-E-Mails teilgenommen haben. Dies ist eine sichere Website, und Ihr Klick war Teil eines Tests, um das Bewusstsein für potenzielle Sicherheitsbedrohungen zu erhöhen.</p>
@@ -48,25 +60,7 @@
                 <li>Überprüfen Sie den Link, indem Sie den Mauszeiger darüber halten, ohne zu klicken.</li>
             </ul>
         </div>
-        <?php
-$file = "counter.txt";
-
-// Prüfen, ob die Datei bereits existiert und lesbar ist
-if (file_exists($file) && is_readable($file)) {
-    $count = file_get_contents($file); // aktuellen Zählerstand lesen
-    $count = $count + 1; // Zähler erhöhen
-} else {
-    $count = 1; // Startwert setzen, wenn die Datei noch nicht existiert
-}
-
-// Neuen Zählerstand zurück in die Datei schreiben
-file_put_contents($file, $count);
-?>
-
-<div class="container">
-    <h1>Sie sind der <?php echo $count; ?>. Besucher auf dieser Seite.</h1>
-</div>
-
+        <h1>Sie sind der <?php echo $count; ?>. Besucher auf dieser Seite.</h1>
         <p>Wenn Sie Fragen haben oder mehr Informationen benötigen, zögern Sie nicht, unsere IT-Sicherheitsabteilung zu kontaktieren.</p>
     </div>
 </body>
