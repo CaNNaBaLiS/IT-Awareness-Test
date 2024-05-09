@@ -48,6 +48,25 @@
                 <li>Überprüfen Sie den Link, indem Sie den Mauszeiger darüber halten, ohne zu klicken.</li>
             </ul>
         </div>
+        <?php
+$file = "counter.txt";
+
+// Prüfen, ob die Datei bereits existiert und lesbar ist
+if (file_exists($file) && is_readable($file)) {
+    $count = file_get_contents($file); // aktuellen Zählerstand lesen
+    $count = $count + 1; // Zähler erhöhen
+} else {
+    $count = 1; // Startwert setzen, wenn die Datei noch nicht existiert
+}
+
+// Neuen Zählerstand zurück in die Datei schreiben
+file_put_contents($file, $count);
+?>
+
+<div class="container">
+    <h1>Sie sind der <?php echo $count; ?>. Besucher auf dieser Seite.</h1>
+</div>
+
         <p>Wenn Sie Fragen haben oder mehr Informationen benötigen, zögern Sie nicht, unsere IT-Sicherheitsabteilung zu kontaktieren.</p>
     </div>
 </body>
