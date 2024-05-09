@@ -55,9 +55,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
-        $.getJSON("https://api.countapi.xyz/hit/cannabalis.github.ioIT-Awareness-Test/visits", function(response) {
-    $("#visits").text(response.value);
-});
+        $.ajax({
+            method: 'GET',
+            url: 'https://api.api-ninjas.com/v1/counter?id=it-awareness-test&hit=true',
+            headers: { 'X-Api-Key': '7eG0Q2YGRpWQtImsaYjY+w==Y7kPOabDTARfJmAD'},
+            contentType: 'application/json',
+            success: function(result) {
+                $('#visitCount').text(result.value);
+            },
+            error: function ajaxError(jqXHR) {
+                console.error('Error: ', jqXHR.responseText);
+                $('#visitCount').text("Fehler beim Laden des Zählers.");
+            }
+        });
     });
     </script>
 </body>
